@@ -20,7 +20,9 @@ class PinkieGame extends FlameGame with HasCollisionDetection, HasDraggables {
     await super.onLoad();
     var physicalSize = window.physicalSize;
     camera.viewport = FixedResolutionViewport(
-        Vector2(physicalSize.width, physicalSize.height));
+      Vector2(physicalSize.width, physicalSize.height),
+    );
+
     add(SpriteComponent(sprite: await loadSprite("background.png"))
       ..size = size);
 

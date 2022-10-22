@@ -8,7 +8,32 @@ class FlutterLayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ScoreBloc, ScoreState>(
+    return BlocConsumer<ScoreBloc, ScoreState>(
+      listener: (context, state) {
+        if (state.score == 2) {
+          showDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  content: const Text("Congratulations! You are rich!"),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text("Buy jet fuel"),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text("Save in treasure chest"),
+                    ),
+                  ],
+                );
+              });
+        }
+      },
       builder: (context, state) {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
