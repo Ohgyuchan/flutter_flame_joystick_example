@@ -13,11 +13,17 @@ class Treasure extends SpriteComponent
     debugMode = true;
   }
 
+  late Sprite redGem;
+  late Sprite pinkGem;
+
   @override
   Future<void> onLoad() async {
     await super.onLoad();
     add(RectangleHitbox());
-    sprite = await gameRef.loadSprite("red_gem.png", srcSize: Vector2.all(32));
+    redGem = await gameRef.loadSprite("red_gem.png", srcSize: Vector2.all(32));
+    pinkGem =
+        await gameRef.loadSprite("pink_gem.png", srcSize: Vector2.all(32));
+    sprite = redGem;
   }
 
   @override
