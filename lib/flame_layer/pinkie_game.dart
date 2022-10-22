@@ -20,16 +20,20 @@ class PinkieGame extends FlameGame with HasCollisionDetection, HasDraggables {
     await super.onLoad();
     var physicalSize = window.physicalSize;
     camera.viewport = FixedResolutionViewport(
-        Vector2(physicalSize.width, physicalSize.height));
+      Vector2(physicalSize.width, physicalSize.height),
+    );
+
     add(SpriteComponent(sprite: await loadSprite("background.png"))
       ..size = size);
 
-    add(FlameBlocProvider.value(value: scoreBloc, children: [
-      Treasure(treasurePosition: Vector2(300, 100)),
-      Treasure(treasurePosition: Vector2(600, 100)),
-      Treasure(treasurePosition: Vector2(800, 100)),
-      Pinkie(),
-    ]));
+    add(FlameBlocProvider<ScoreBloc, ScoreState>.value(
+        value: scoreBloc,
+        children: [
+          Treasure(treasurePosition: Vector2(300, 100)),
+          Treasure(treasurePosition: Vector2(600, 100)),
+          Treasure(treasurePosition: Vector2(800, 100)),
+          Pinkie(),
+        ]));
 
     final knobPaint = BasicPalette.blue.withAlpha(200).paint();
     final backgroundPaint = BasicPalette.blue.withAlpha(100).paint();
